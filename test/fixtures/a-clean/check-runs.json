@@ -1,0 +1,25 @@
+{
+  "total_count": 4,
+  "check_runs": [
+    {
+      "name": "lint (ubuntu-latest)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "test (ubuntu-latest, node 20)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "test (ubuntu-latest, node 22)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "name": "build (node 20)",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

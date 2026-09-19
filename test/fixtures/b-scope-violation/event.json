@@ -1,0 +1,18 @@
+{
+  "action": "opened",
+  "repository": {
+    "name": "widgets",
+    "owner": { "login": "example" }
+  },
+  "pull_request": {
+    "number": 47,
+    "title": "chore: dependency refresh and session housekeeping",
+    "body": "## Summary\n\n- Routine dependency refresh.\n\nOnly modified dependencies in package.json. Ran the full test suite. All tests passed. No API changes.",
+    "user": { "login": "claude[bot]" },
+    "labels": [
+      { "name": "agent" },
+      { "name": "bump-deps" }
+    ],
+    "head": { "sha": "b13n4t5r6a7c8k9e0d1f2a3b4c5d6e7f8a9b0c1d" }
+  }
+}

@@ -1,0 +1,39 @@
+name: "agent-pr-gate"
+description: "Deterministic verification gate for AI-agent-authored pull requests — scope enforcement, residue scan, run attestation, claims-vs-diff. No LLM in the trust path."
+branding:
+  icon: "shield"
+  color: "purple"
+
+inputs:
+  config-path:
+    description: "Path to the policy file (agent-pr-gate.yaml format)"
+    required: false
+    default: "agent-pr-gate.yaml"
+  format:
+    description: "Output format: github (annotations), console or json"
+    required: false
+    default: "github"
+  force-agent:
+    description: "Treat the PR as agent-authored regardless of agentSignals"
+    required: false
+    default: "false"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run agent-pr-gate
+      shell: bash
+      run: |
+        node "${{ github.action_path }}/dist/src/cli.js" check \
+          --config "${{ inputs.config-path }}" \
+          --format "${{ inputs.format }}" \
+          ${{ inputs.force-agent == 'true' && '--force-agent' || '' }}
+
+# The gate reads the pull_request event from GITHUB_EVENT_PATH (set by the
+# runner) and needs a token with `checks: read` and `pull-requests: read`:
+#
+#   env:
+#     GITHUB_TOKEN: ${{ github.token }}
+#
+# dist/ must be committed for the action to run from your repo (CI builds it
+# on every push; see .github/workflows/ci.yml).

@@ -1,0 +1,42 @@
+{
+  "name": "agent-pr-gate",
+  "version": "0.1.0",
+  "description": "deterministic CI verification gate for AI-agent-authored pull requests: scope enforcement, residue scan, run attestation, claims-vs-diff. No LLM in the trust path.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "agent-pr-gate": "dist/src/cli.js"
+  },
+  "files": [
+    "dist/src",
+    "agent-pr-gate.example.yaml",
+    "README.md",
+    "LICENSE",
+    "action.yml"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && node run-tests.mjs",
+    "demo": "node demo/run-demo.mjs"
+  },
+  "keywords": [
+    "ci",
+    "pull-request",
+    "ai-agents",
+    "coding-agent",
+    "security",
+    "deterministic",
+    "github-actions",
+    "code-review"
+  ],
+  "engines": {
+    "node": ">=18.17"
+  },
+  "dependencies": {
+    "yaml": "^2.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.6.0"
+  }
+}

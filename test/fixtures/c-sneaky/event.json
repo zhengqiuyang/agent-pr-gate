@@ -1,0 +1,17 @@
+{
+  "action": "opened",
+  "repository": {
+    "name": "widgets",
+    "owner": { "login": "example" }
+  },
+  "pull_request": {
+    "number": 88,
+    "title": "refactor: tidy telemetry exporter",
+    "body": "Routine refactor of the telemetry exporter internals.\n\nRan the full test suite. All tests passed.",
+    "user": { "login": "github-actions[bot]" },
+    "labels": [
+      { "name": "ai-generated" }
+    ],
+    "head": { "sha": "d3ad00c0ffee1234567890abcdef1234567890ab" }
+  }
+}

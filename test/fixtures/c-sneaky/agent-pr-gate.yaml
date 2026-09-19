@@ -1,0 +1,17 @@
+agentSignals:
+  actors: ["copilot-sweeper-agent", "github-actions[bot]", "app/claude"]
+  labels: ["agent", "ai-generated"]
+
+policies:
+  bump-deps:
+    allow: ["package.json", "package-lock.json", "pnpm-lock.yaml", "deps/**"]
+    deny: [".github/workflows/**", "CODEOWNERS", "**/*.test.ts"]
+  default:
+    deny: [".github/workflows/**", "CODEOWNERS", "agent-pr-gate.yaml", ".agent-pr-gate.yaml"]
+
+attest:
+  testChecks: ["test", "build"]
+
+claims:
+  verify: true
+  onMismatch: fail

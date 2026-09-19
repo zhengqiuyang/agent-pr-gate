@@ -1,0 +1,30 @@
+# agent-pr-gate — deterministic verification gate for AI-agent-authored PRs.
+# Copy to `agent-pr-gate.yaml` (or `.agent-pr-gate.yaml`) at the repo root.
+# Full reference: README.md > Configuration.
+
+# Pillar 0 — when is a PR "agent-authored"? (OR semantics across actors/labels;
+# --force-agent on the CLI overrides and always treats the PR as agent-authored.)
+agentSignals:
+  actors: ["copilot-sweeper-agent", "github-actions[bot]", "app/claude"]  # substring match on PR author/login
+  labels: ["agent", "ai-generated"]
+
+# Pillar 1 — scope enforcement. A policy class is selected via PR label (exact
+# policy name) or path heuristic (the non-default policy whose allow-list matches
+# the most changed paths; ties broken by config order). Unknown label -> default.
+policies:
+  bump-deps:
+    allow: ["package.json", "package-lock.json", "pnpm-lock.yaml", "deps/**"]
+    deny: [".github/workflows/**", "CODEOWNERS", "**/*.test.ts"]
+  default:
+    deny: [".github/workflows/**", "CODEOWNERS", "agent-pr-gate.yaml", ".agent-pr-gate.yaml"]
+
+# Pillar 3 — run attestation. Check-run name substrings that must exist with
+# conclusion=success on the PR head SHA.
+attest:
+  testChecks: ["test", "build"]
+
+# Pillar 4 — claims-vs-diff verification of the PR body.
+claims:
+  verify: true            # pillar on/off
+  onMismatch: fail        # fail | warn
+  # apiPaths: ["src/api/**", "routes/**", "**/openapi*.yaml"]   # enables no-api-changes verification
