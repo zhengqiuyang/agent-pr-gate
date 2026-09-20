@@ -1,36 +1,34 @@
 {
   "name": "agent-pr-gate",
   "version": "0.1.0",
-  "description": "deterministic CI verification gate for AI-agent-authored pull requests: scope enforcement, residue scan, run attestation, claims-vs-diff. No LLM in the trust path.",
+  "description": "Deterministic CI gate for AI-agent PRs — scope policy, residue scan, run attestation, claims-vs-diff",
   "type": "module",
   "license": "MIT",
   "bin": {
     "agent-pr-gate": "dist/src/cli.js"
   },
   "files": [
-    "dist/src",
-    "agent-pr-gate.example.yaml",
+    "dist",
+    "demo",
+    "action.yml",
     "README.md",
-    "LICENSE",
-    "action.yml"
+    "LICENSE"
   ],
   "scripts": {
     "build": "tsc",
     "test": "npm run build && node run-tests.mjs",
-    "demo": "node demo/run-demo.mjs"
+    "demo": "node demo/run-demo.mjs",
+    "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
-    "ci",
-    "pull-request",
     "ai-agents",
-    "coding-agent",
-    "security",
-    "deterministic",
+    "code-review",
     "github-actions",
-    "code-review"
+    "ci",
+    "security"
   ],
   "engines": {
-    "node": ">=18.17"
+    "node": ">=20"
   },
   "dependencies": {
     "yaml": "^2.6.0"
@@ -38,5 +36,9 @@
   "devDependencies": {
     "@types/node": "^24.0.0",
     "typescript": "^5.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhengqiuyang/agent-pr-gate.git"
   }
 }
