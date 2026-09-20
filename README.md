@@ -272,5 +272,5 @@ $ npm test        # build + node:test suite (75 tests, fully offline, fixture mo
 $ npm run demo    # the three scenarios above, with verdicts
 ```
 
-TypeScript ESM, runtime dependency only `yaml`, Node >= 18.17. CI runs the
+TypeScript ESM, runtime dependency only `yaml`, Node >= 20. CI runs the
 suite on ubuntu/windows × Node 20/22/24. MIT license — see [LICENSE](LICENSE).
